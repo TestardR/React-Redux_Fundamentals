@@ -9,6 +9,24 @@ const App = () => {
   return (
     <div className="ui container comments">
       <ApprovalCard>
+        <div className="ui container comments">
+          <div className="comment">
+            <a href="/" className="avatar">
+              <img alt="avatar" src={faker.image.avatar()} />
+            </a>
+            <div className="content">
+              <a href="" className="author">
+                Roger
+              </a>
+              <div className="metadata">
+                <span className="data">Now</span>
+              </div>
+              <div className="text">Wow!</div>
+            </div>
+          </div>
+        </div>
+      </ApprovalCard>
+      <ApprovalCard>
         <CommentDetail
           avatar={faker.image.avatar()}
           author="Vanessa"
