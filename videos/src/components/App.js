@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <div class="ui container">
+      <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         <VideoList videos={this.state.videos} />
       </div>
