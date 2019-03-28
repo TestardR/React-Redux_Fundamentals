@@ -14,9 +14,10 @@ class StreamCreate extends Component {
   // props as formProps => renderInput(formProps)
   // we destructured this.formProps.input
   renderInput = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     // console.log(meta.error);
     return (
-      <div className="field">
+      <div className={className}>
         <label>{label}</label>
         <input {...input} />
         {this.renderError(meta)}
