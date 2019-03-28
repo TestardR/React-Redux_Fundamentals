@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class StreamCreate extends Component {
-  // props as formProps => console.log(formProps)
+  // props as formProps => renderInput(formProps)
   // we destructured this.formProps.input
   renderInput({ input, label }) {
     return (
@@ -12,15 +12,25 @@ class StreamCreate extends Component {
       </div>
     );
   }
+
+  onSubmit(formValues) {
+    console.log(formValues);
+  }
+
   render() {
+    // console.log(this.props);
     return (
-      <form className="ui form">
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+        className="ui form"
+      >
         <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
           name="description"
           component={this.renderInput}
           label="Enter Description"
         />
+        <button className="ui button primary">Submit</button>
       </form>
     );
   }
