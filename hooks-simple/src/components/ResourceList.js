@@ -1,30 +1,50 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-class ResourceList extends Component {
-  state = { resources: [] };
+const ResourceList = ({ resource }) => {
+  const [resources, setResources] = useState([]);
 
-  async componentDidMount() {
+  const fetchResource = async resource => {
     const response = await axios.get(
-      `http://jsonplaceholder.typicode.com/${this.props.resource}`
+      `http://jsonplaceholder.typicode.com/${resource}`
     );
 
-    this.setState({ resources: response.data });
-  }
+    setResources(response.data);
+  };
 
-  async componentDidUpdate(prevProps) {
-    // console.log(prevProps);
-    if (prevProps.resource !== this.props.resource) {
-      const response = await axios.get(
-        `http://jsonplaceholder.typicode.com/${this.props.resource}`
-      );
-      this.setState({ resources: response.data });
-    }
-  }
+  useEffect(() => {
+    fetchResource(resource);
+  }, [resource]);
 
-  render() {
-    return <div>{this.state.resources.length}</div>;
-  }
-}
+  return <div>{resources.length}</div>;
+};
 
 export default ResourceList;
+
+// class ResourceList extends Component {
+//   state = { resources: [] };
+
+//   async componentDidMount() {
+//     const response = await axios.get(
+//       `http://jsonplaceholder.typicode.com/${this.props.resource}`
+//     );
+
+//     this.setState({ resources: response.data });
+//   }
+
+//   async componentDidUpdate(prevProps) {
+//     // console.log(prevProps);
+//     if (prevProps.resource !== this.props.resource) {
+//       const response = await axios.get(
+//         `http://jsonplaceholder.typicode.com/${this.props.resource}`
+//       );
+//       this.setState({ resources: response.data });
+//     }
+//   }
+
+//   render() {
+//     return <div>{this.state.resources.length}</div>;
+//   }
+// }
+
+// export default ResourceList;
